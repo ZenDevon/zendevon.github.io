@@ -13,7 +13,7 @@
   
   <title>
     
-      archive_a: 2024/6 
+      NodeJs中http模块 
       
       
       |
@@ -115,104 +115,197 @@
 
 
       <div class="flex-container">
-        <!-- 归档页，展示本站所有文章，按照年份降序归类，url形式：https://yoursite/archives/ -->
+        <!-- 文章详情页，展示文章具体内容，url形式：https://yoursite/文章标题/ -->
+<!-- 同时为「标签tag」，「朋友friend」，「分类categories」，「关于about」页面的承载页面，具体展示取决于page.type -->
 
-<!-- last: 按年份把文章分组，当前遍历到的年份 -->
-<!-- now: 当前遍历到的文章的发布年份 -->
 
-<div class="container archives">
-  <div class="post-list">
-    
-        <!-- 后续文章的发布年份呈现 -->
-        <div class="content-title">
-          <h2>
-            <span>2024</span>
-          </h2>
+  <!-- LaTex Display -->
+
+  
+    <script async type="text/javascript" src="/plugins/mathjax/tex-chtml.js"></script>
+  
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    }
+  </script>
+
+
+
+
+
+  <!-- clipboard -->
+
+  
+    <script async type="text/javascript" src="/plugins/clipboard.min.js"></script>
+  
+  
+<script src="/js/codeCopy.js"></script>
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  <!-- 文章内容页 url形式：https://yoursite/文章标题/ -->
+  <div class="container post-details" id="post-details">
+    <div class="post-content">
+      <div class="post-title">NodeJs中http模块</div>
+      <div class="post-attach">
+        <span class="post-pubtime">
+          <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+          2024-05-20 21:23:16
+        </span>
+        
+              <span class="post-tags">
+                <i class="iconfont icon-tags mr-10" title="标签"></i>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/%E5%89%8D%E7%AB%AF/" title="前端">
+                    #前端
+                  </a>
+                </span>
+                
+                <span class="span--tag mr-8">
+                  <a href="/tags/Node/" title="Node">
+                    #Node
+                  </a>
+                </span>
+                
+              </span>
+          
+      </div>
+      <div class="markdown-body">
+        <h2 id="Web服务器"><a href="#Web服务器" class="headerlink" title="Web服务器"></a>Web服务器</h2><ul>
+<li>什么是Web服务器？<ul>
+<li>当应用程序（客户端）需要某一个资源时，可以向一个台服务器，通过Http请求获取到这个资源；提供资源的这个服务器，就是一个Web服务器；<br>  <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDI0IDI0Ij48Y2lyY2xlIGN4PSI0IiBjeT0iMTIiIHI9IjMiIGZpbGw9ImN1cnJlbnRDb2xvciI+PGFuaW1hdGUgaWQ9InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAiIGF0dHJpYnV0ZU5hbWU9InIiIGJlZ2luPSIwO3N2Z1NwaW5uZXJzM0RvdHNTY2FsZTEuZW5kLTAuMjVzIiBkdXI9IjAuNzVzIiB2YWx1ZXM9IjM7LjI7MyIvPjwvY2lyY2xlPjxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjMiIGZpbGw9ImN1cnJlbnRDb2xvciI+PGFuaW1hdGUgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAuZW5kLTAuNnMiIGR1cj0iMC43NXMiIHZhbHVlcz0iMzsuMjszIi8+PC9jaXJjbGU+PGNpcmNsZSBjeD0iMjAiIGN5PSIxMiIgcj0iMyIgZmlsbD0iY3VycmVudENvbG9yIj48YW5pbWF0ZSBpZD0ic3ZnU3Bpbm5lcnMzRG90c1NjYWxlMSIgYXR0cmlidXRlTmFtZT0iciIgYmVnaW49InN2Z1NwaW5uZXJzM0RvdHNTY2FsZTAuZW5kLTAuNDVzIiBkdXI9IjAuNzVzIiB2YWx1ZXM9IjM7LjI7MyIvPjwvY2lyY2xlPjwvc3ZnPg==" data-original="https://raw.githubusercontent.com/ZenDevon/blog-img/main/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240520211048.png" alt="img"></li>
+</ul>
+</li>
+<li>目前有很多开源的Web服务器：Nginx、Apache（静态）、Apache Tomcat（静态、动态）、Node.js</li>
+</ul>
+<h2 id="Web服务器初体验"><a href="#Web服务器初体验" class="headerlink" title="Web服务器初体验"></a>Web服务器初体验</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&quot;express&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">HTTP_PORT</span> = <span class="number">8000</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> server = http.<span class="title function_">createServer</span>(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.<span class="title function_">end</span>(<span class="string">&quot;Hello World&quot;</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">server.<span class="title function_">listen</span>(<span class="variable constant_">HTTP_PORT</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`服务器在<span class="subst">$&#123;HTTP_PORT&#125;</span>启动成功~`</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建Server时会传入一个回调函数，这个回调函数在被调用时会传入两个参数：<ul>
+<li>req：request请求对象，包含请求相关的信息；</li>
+<li>res：response响应对象，包含我们要发送给客户端的信息</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+      
+        <div class="prev-or-next">
+          <div class="post-foot-prev">
+            
+              <a href="/posts/15692.html" target="_self">
+                <i class="iconfont icon-chevronleft"></i>
+                <span>上一页</span>           
+              </a>
+            
+          </div>
+          <div class="post-attach">
+            <span class="post-pubtime">
+              <i class="iconfont icon-updatetime mr-10" title="更新时间"></i>
+              2024-05-20 21:23:16
+            </span>
+            
+                  <span class="post-tags">
+                    <i class="iconfont icon-tags mr-10" title="标签"></i>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/%E5%89%8D%E7%AB%AF/" title="前端">
+                        #前端
+                      </a>
+                    </span>
+                    
+                    <span class="span--tag mr-8">
+                      <a href="/tags/Node/" title="Node">
+                        #Node
+                      </a>
+                    </span>
+                    
+                  </span>
+              
+          </div>
+          <div class="post-foot-next">
+            
+              <a href="/posts/32800.html" target="_self">
+                <span>下一页</span>
+                <i class="iconfont icon-chevronright"></i>
+              </a>
+            
+          </div>
         </div>
       
-      <div class="post-item" title="Node学习与实践">
-        <div class="time-m-d">06-09</div>
-        <div class="title">
-          <a href="/posts/36775.html">
-            <span>Node学习与实践</span>
-          </a>
-        </div>
-      </div>
+    </div>
     
-      <div class="post-item" title="Hello World">
-        <div class="time-m-d">06-09</div>
-        <div class="title">
-          <a href="/posts/16107.html">
-            <span>Hello World</span>
-          </a>
-        </div>
-      </div>
+  <div id="btn-catalog" class="btn-catalog">
+    <i class="iconfont icon-catalog"></i>
+  </div>
+  <div class="post-catalog hidden" id="catalog">
+    <div class="title">目录</div>
+    <div class="catalog-content">
+      
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">Web服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%88%9D%E4%BD%93%E9%AA%8C"><span class="toc-text">Web服务器初体验</span></a></li></ol>
+      
+    </div>
+  </div>
+
+  
+<script src="/js/catalog.js"></script>
+
+
+
+
     
-      <div class="post-item" title="前端性能优化">
-        <div class="time-m-d">05-29</div>
-        <div class="title">
-          <a href="/posts/11055.html">
-            <span>前端性能优化</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="JavaScript面试题">
-        <div class="time-m-d">05-27</div>
-        <div class="title">
-          <a href="/posts/53500.html">
-            <span>JavaScript面试题</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="Js数组常用方法">
-        <div class="time-m-d">05-27</div>
-        <div class="title">
-          <a href="/posts/2861.html">
-            <span>Js数组常用方法</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="记录和你在一起的每一天">
-        <div class="time-m-d">05-20</div>
-        <div class="title">
-          <a href="/posts/15692.html">
-            <span>记录和你在一起的每一天</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="NodeJs中http模块">
-        <div class="time-m-d">05-20</div>
-        <div class="title">
-          <a href="/posts/2127.html">
-            <span>NodeJs中http模块</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="事件循环">
-        <div class="time-m-d">05-14</div>
-        <div class="title">
-          <a href="/posts/32800.html">
-            <span>事件循环</span>
-          </a>
-        </div>
-      </div>
-    
-      <div class="post-item" title="洛阳行">
-        <div class="time-m-d">05-13</div>
-        <div class="title">
-          <a href="/posts/35371.html">
-            <span>洛阳行</span>
-          </a>
-        </div>
+      <div class="comments-container">
+        
+
+
+
+
+  
+    <script async type="text/javascript" src='https://cdn.jsdelivr.net/npm/valine@1.4.18/dist/Valine.min.js' onload="loadValineSuc(this)"></script>
+  
+
+  <div id="vcomments"></div>
+
+  <script>
+    function loadValineSuc() {
+      new Valine({
+        el: '#vcomments',
+        appId: 'NfISplhOLh1YbNaa3N8KeFKV-gzGzoHsz',
+        appKey: '0XvcgGQCaJceJFHJHdg0hUSd',
+        placeholder: 'Welcome!',
+        avatar: 'retro',
+        lang: 'zh-CN'
+      })
+    }
+  </script>
+
+    <style>
+      .comments-container .v .vempty {
+        display: none!important;
+      }
+    </style>
+
+
+
+
       </div>
     
   </div>
-</div>
+
 
         
 <div class="footer">
