@@ -4,36 +4,48 @@
   
     
     <entry>
-      <title>Node学习与实践</title>
-      <link href="/posts/36775.html"/>
-      <url>/posts/36775.html</url>
+      <title>Less语法学习与实践</title>
+      <link href="/posts/13736.html"/>
+      <url>/posts/13736.html</url>
       
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Hello World</title>
-      <link href="/posts/16107.html"/>
-      <url>/posts/16107.html</url>
-      
-        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+        <content type="html"><![CDATA[<p><a href="https://less.bootcss.com/#">Less</a>是一门向后兼容的 CSS 扩展语言。相较于传统的Css，其引入了变量、函数、继承等一些新的概念，帮助我们更方便的书写Css。</p><hr><p>The End!</p>]]></content>
       
       
       <categories>
           
-          <category> Welcome </category>
+          <category> 前端 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Welcome </tag>
+            <tag> less </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>记录CSS3学习</title>
+      <link href="/posts/48406.html"/>
+      <url>/posts/48406.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="CSS3新增渐变"><a href="#CSS3新增渐变" class="headerlink" title="CSS3新增渐变"></a>CSS3新增渐变</h1><h2 id="线性渐变"><a href="#线性渐变" class="headerlink" title="线性渐变"></a>线性渐变</h2><p>多个颜色之间的渐变，默认从上到下渐变</p><blockquote><p>background-image: linear-gradient(red,  yellow, green)</p></blockquote><p>使用关键词设置线性渐变的方向</p><p>使用角度设置线性渐变的方向</p><p>调整开始渐变的位置</p><h2 id="径向渐变"><a href="#径向渐变" class="headerlink" title="径向渐变"></a>径向渐变</h2><h2 id="重复渐变"><a href="#重复渐变" class="headerlink" title="重复渐变"></a>重复渐变</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> CSS3 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 前端 </tag>
             
         </tags>
       
@@ -74,25 +86,6 @@
         <tags>
             
             <tag> 面试题 </tag>
-            
-            <tag> 前端 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Js数组常用方法</title>
-      <link href="/posts/2861.html"/>
-      <url>/posts/2861.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      
-        <tags>
             
             <tag> 前端 </tag>
             
@@ -172,9 +165,9 @@
       
         <tags>
             
-            <tag> 旅行 </tag>
-            
             <tag> 生活 </tag>
+            
+            <tag> 旅行 </tag>
             
         </tags>
       
