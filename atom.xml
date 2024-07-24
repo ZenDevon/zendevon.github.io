@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2024-07-21T14:02:52.647Z</updated>
+  <updated>2024-07-24T13:57:43.979Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,56 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>vue2配置Webpack@别名(路径配置)</title>
+    <link href="http://example.com/posts/5590.html"/>
+    <id>http://example.com/posts/5590.html</id>
+    <published>2024-07-24T13:48:46.000Z</published>
+    <updated>2024-07-24T13:57:43.979Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;项目目录结构&quot;&gt;&lt;a href=&quot;#项目目录结构&quot; class=&quot;headerlink&quot; title=&quot;项目目录结构&quot;&gt;&lt;/a&gt;项目目录结构&lt;/h2&gt;&lt;figure class=&quot;highlight markdown&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td</summary>
+        
+      
+    
+    
+    
+    <category term="前端" scheme="http://example.com/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+    <category term="Vue2" scheme="http://example.com/tags/Vue2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Vue2路由跳转报错解决</title>
+    <link href="http://example.com/posts/57793.html"/>
+    <id>http://example.com/posts/57793.html</id>
+    <published>2024-07-24T11:19:27.000Z</published>
+    <updated>2024-07-24T13:47:00.882Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Vue2编程式路由跳转到当前路由-参数不变-，多次执行会抛出如下NavigationDuplicated警告错误？&quot;&gt;&lt;a href=&quot;#Vue2编程式路由跳转到当前路由-参数不变-，多次执行会抛出如下NavigationDuplicated警告错误？&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="前端" scheme="http://example.com/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+    <category term="Vue2" scheme="http://example.com/tags/Vue2/"/>
+    
+  </entry>
   
   <entry>
     <title>Less语法学习与实践</title>
@@ -208,9 +258,9 @@
     
     
     
-    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
-    
     <category term="旅行" scheme="http://example.com/tags/%E6%97%85%E8%A1%8C/"/>
+    
+    <category term="生活" scheme="http://example.com/tags/%E7%94%9F%E6%B4%BB/"/>
     
   </entry>
   
