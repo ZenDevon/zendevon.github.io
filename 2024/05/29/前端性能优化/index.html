@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="阿文的博客">
+    <meta property="og:type" content="website">
+    <meta name="description" content="阿文的博客">
+    <meta name="keyword"  content="hexo,阿文,阿文的博客,全栈开发">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        前端性能优化 - ZenDevon 日常
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+
+    
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="ZenDevon 日常" type="application/atom+xml">
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> sometimes code, sometimes design </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar radius">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>ZenDevon</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>收藏</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8A%9F%E8%83%BD%E4%B8%8E%E7%BB%84%E6%88%90"><span class="toc-text">浏览器功能与组成</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BA%94%E8%AF%A5%E6%9C%89%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="toc-text">浏览器应该有的功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%86%85%E6%A0%B8-%E6%B8%B2%E6%9F%93%E5%BC%95%E6%93%8E"><span class="toc-text">浏览器的内核(渲染引擎)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Webkit%E5%86%85%E6%A0%B8%EF%BC%9A"><span class="toc-text">Webkit内核：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Blink%E5%86%85%E6%A0%B8%EF%BC%9A"><span class="toc-text">Blink内核：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Gecko%E5%86%85%E6%A0%B8%EF%BC%9A"><span class="toc-text">Gecko内核：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Trident%E5%86%85%E6%A0%B8%EF%BC%9A"><span class="toc-text">Trident内核：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EdgeHTML%E5%86%85%E6%A0%B8%EF%BC%9A"><span class="toc-text">EdgeHTML内核：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Chromium%E3%80%81Chrome%E3%80%81Blink%E4%B8%89%E8%80%85%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-text">Chromium、Chrome、Blink三者之间的关系</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B"><span class="toc-text">进程与线程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%EF%BC%9A"><span class="toc-text">进程：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%EF%BC%9A"><span class="toc-text">线程：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%B0%E4%BB%A3%E6%B5%8F%E8%A7%88%E5%99%A8%EF%BC%9A%E5%A4%9A%E8%BF%9B%E7%A8%8B%E3%80%81%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="toc-text">现代浏览器：多进程、多线程模型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E5%BC%95%E6%93%8E%E4%B8%8E%E9%98%BB%E5%A1%9E"><span class="toc-text">浏览器渲染引擎与阻塞</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E5%BC%95%E6%93%8E"><span class="toc-text">一、浏览器渲染引擎</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E6%A8%A1%E5%9D%97"><span class="toc-text">主要模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A7%E8%87%B4%E7%9A%84%E6%B8%B2%E6%9F%93%E8%BF%87%E7%A8%8B"><span class="toc-text">大致的渲染过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E9%98%BB%E5%A1%9E%E6%B8%B2%E6%9F%93"><span class="toc-text">二、阻塞渲染</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8ECSS%E9%98%BB%E5%A1%9E"><span class="toc-text">关于CSS阻塞</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8EJS%E9%98%BB%E5%A1%9E"><span class="toc-text">关于JS阻塞</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%A4%87%E6%B3%A8"><span class="toc-text">三、备注</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%BE%E5%B1%82%E4%B8%8E%E9%87%8D%E7%BB%98%E9%87%8D%E6%8E%92"><span class="toc-text">图层与重绘重排</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS%E5%9B%BE%E5%B1%82"><span class="toc-text">CSS图层</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E5%B1%82%E7%9A%84%E5%88%9B%E5%BB%BA%E6%9D%A1%E4%BB%B6"><span class="toc-text">图层的创建条件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E7%BB%98-Repaint"><span class="toc-text">重绘(Repaint)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E6%8E%92-Reflow-%E5%8F%88%E7%A7%B0%EF%BC%9A%E5%9B%9E%E6%B5%81"><span class="toc-text">重排(Reflow 又称：回流)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A6%E5%8F%91%E9%87%8D%E7%BB%98%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="toc-text">触发重绘的属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%A6%E5%8F%91%E9%87%8D%E6%8E%92-%E5%9B%9E%E6%B5%81-%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="toc-text">触发重排(回流)的属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E8%A7%A6%E5%8F%91%E9%87%8D%E6%8E%92%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-text">常见的触发重排的操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E9%87%8D%E6%8E%92%E9%87%8D%E7%BB%98%E6%96%B9%E6%A1%88"><span class="toc-text">优化重排重绘方案</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#requestAnimationFrame-%E2%80%94-%E8%AF%B7%E6%B1%82%E5%8A%A8%E7%94%BB%E5%B8%A7"><span class="toc-text">requestAnimationFrame — 请求动画帧</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CDN"><span class="toc-text">CDN</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFCND%EF%BC%9F%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">什么是CND？工作原理是什么？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81"><span class="toc-text">函数防抖和节流</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%B2%E6%8A%96-debounce"><span class="toc-text">防抖(debounce)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8A%82%E6%B5%81-throttle"><span class="toc-text">节流(throttle)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8"><span class="toc-text">浏览器本地存储</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AD%98%E5%82%A8"><span class="toc-text">浏览器存储</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web-Storage"><span class="toc-text">Web Storage</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6"><span class="toc-text">缓存机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%BC%93%E5%AD%98%E7%90%86%E8%A7%A3"><span class="toc-text">1. 缓存理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%BC%93%E5%AD%98%E5%88%86%E7%B1%BB"><span class="toc-text">2. 缓存分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%BC%93%E5%AD%98%E4%BD%BF%E7%94%A8%E7%A4%BA%E6%84%8F%E5%9B%BE"><span class="toc-text">3. 缓存使用示意图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E7%BC%93%E5%AD%98%E4%B8%AD%E7%9A%84header%E5%8F%82%E6%95%B0"><span class="toc-text">4. 缓存中的header参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%BC%BA%E7%BC%93%E5%AD%98%E7%9A%84header%E5%8F%82%E6%95%B0"><span class="toc-text">1、强缓存的header参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98%E7%9A%84header%E5%8F%82%E6%95%B0"><span class="toc-text">2、协商缓存的header参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%BC%BA%E7%BC%93%E5%AD%98%E5%A6%82%E4%BD%95%E9%87%8D%E6%96%B0%E5%8A%A0%E8%BD%BD%E6%96%B0%E7%9A%84%E8%B5%84%E6%BA%90"><span class="toc-text">5. 强缓存如何重新加载新的资源</span></a></li></ol></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> sometimes code, sometimes design </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        前端性能优化
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2024-05-29 16:17:00</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#前端" title="前端">前端</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#性能优化" title="性能优化">性能优化</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h1 id="浏览器功能与组成"><a href="#浏览器功能与组成" class="headerlink" title="浏览器功能与组成"></a>浏览器功能与组成</h1><h2 id="浏览器应该有的功能"><a href="#浏览器应该有的功能" class="headerlink" title="浏览器应该有的功能"></a>浏览器应该有的功能</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">网络：</span><br><span class="line"><span class="code">	浏览器通过网络模块来下载各式各样的资源，例如html文本；javascrip代码；样式表；图片；音视频等。</span></span><br><span class="line"><span class="code">	网路部分尤为重要，因为它耗时长，而且需要安全访问互联网上的资源。</span></span><br><span class="line"><span class="code"></span></span><br><span class="line">资源管理：</span><br><span class="line"><span class="code">	从网络下载，或者本地获取到的资源需要高效的机制来管理它们。</span></span><br><span class="line"><span class="code">	例如如何避免重复下载，资源如何缓存等等</span></span><br><span class="line"><span class="code"></span></span><br><span class="line">网页浏览：</span><br><span class="line"><span class="code">	这是浏览器的核心也是最基本的功能，最重要的功能。</span></span><br><span class="line"><span class="code">	如何将资源转变为可视化的结果。</span></span><br><span class="line"><span class="code">	</span></span><br><span class="line"><span class="code">多页面管理</span></span><br><span class="line"><span class="code">插件与管理</span></span><br><span class="line"><span class="code">账户和同步</span></span><br><span class="line"><span class="code">安全机制</span></span><br><span class="line"><span class="code">开发者工具</span></span><br><span class="line"><span class="code">···</span></span><br><span class="line"><span class="code">···</span></span><br><span class="line"><span class="code"></span></span><br><span class="line">浏览器的主要功能总结起来就一句话：将用户输入的url转变为可视化的图像。</span><br></pre></td></tr></table></figure>
+
+<h2 id="浏览器的内核-渲染引擎"><a href="#浏览器的内核-渲染引擎" class="headerlink" title="浏览器的内核(渲染引擎)"></a>浏览器的内核(渲染引擎)</h2><p>​        在浏览器中有一个最重要的模块，它主要的作用把一切请求回来的资源变为可视化的图像。</p>
+<p>​        这个模块就是浏览器内核，通常它也被称为渲染引擎。<br>​       主流浏览器有 <code>市场份额</code> <code>有自己独特的内核（渲染引擎+js引擎</code></p>
+<h3 id="Webkit内核："><a href="#Webkit内核：" class="headerlink" title="Webkit内核："></a>Webkit内核：</h3><p>最著名的Webkit内核浏览器是苹果公司的Safari浏览器。</p>
+<ul>
+<li>​    Safari：苹果公司的官方浏览器，使用Webkit内核。</li>
+<li>​    Google Chrome（早期版本）：早期的Chrome浏览器使用了Webkit内核。</li>
+<li>​    Opera（早期版本）：早期的Opera浏览器也使用了Webkit内核。</li>
+</ul>
+<h3 id="Blink内核："><a href="#Blink内核：" class="headerlink" title="Blink内核："></a>Blink内核：</h3><p>Blink内核是由Google开发的一种浏览器引擎，它是在Webkit内核的基础上经过修改和优化而来。</p>
+<ul>
+<li>Google Chrome：由Google开发的最流行的浏览器，使用Blink内核。</li>
+<li>Microsoft Edge：微软开发的浏览器，最新版本使用了Chromium内核（也是基于Blink内核）。</li>
+<li>Opera：最新版本的Opera浏览器也使用了Chromium内核。</li>
+<li>Vivaldi：一款基于Chromium内核的定制化浏览器，由前Opera团队开发。</li>
+<li>360极速浏览器：国内一款流行的浏览器，基于Chromium内核。</li>
+<li>QQ浏览器：腾讯开发的浏览器，也使用了Chromium内核。</li>
+</ul>
+<h3 id="Gecko内核："><a href="#Gecko内核：" class="headerlink" title="Gecko内核："></a>Gecko内核：</h3><p>Gecko内核是由Mozilla基金会开发的一种浏览器引擎，它用于Mozilla Firefox浏览器。Gecko内核在处理网页布局和渲染方面具有很高的性能和灵活性。</p>
+<ul>
+<li>Mozilla Firefox：由Mozilla基金会开发的浏览器，使用Gecko内核。</li>
+</ul>
+<h3 id="Trident内核："><a href="#Trident内核：" class="headerlink" title="Trident内核："></a>Trident内核：</h3><p>Trident内核是由微软开发的一种浏览器引擎，它用于Internet Explorer浏览器。Trident内核在过去的几年中已经逐渐被EdgeHTML内核所取代。</p>
+<ul>
+<li>Internet Explorer：微软开发的浏览器，使用Trident内核。</li>
+</ul>
+<h3 id="EdgeHTML内核："><a href="#EdgeHTML内核：" class="headerlink" title="EdgeHTML内核："></a>EdgeHTML内核：</h3><p>EdgeHTML内核是由微软开发的一种浏览器引擎，它用于Microsoft Edge浏览器。EdgeHTML内核是在Trident内核的基础上进行重写和改进而来。</p>
+<ul>
+<li>Microsoft Edge（旧版）：旧版的Microsoft Edge浏览器使用了EdgeHTML内核。</li>
+</ul>
+<p><code>需要注意的是，这些浏览器和内核的关系可能随着时间的推移而变化，因此最好使用最新版本的浏览器和正确的内核信息。</code></p>
+<h3 id="Chromium、Chrome、Blink三者之间的关系"><a href="#Chromium、Chrome、Blink三者之间的关系" class="headerlink" title="Chromium、Chrome、Blink三者之间的关系"></a>Chromium、Chrome、Blink三者之间的关系</h3><p>Chromium、Chrome和Blink是三个不同但相关的概念：</p>
+<ol>
+<li>Chromium：Chromium是一个开源的浏览器项目，由Google发起并维护。它是一个基于开放源代码的浏览器引擎，也是Chrome浏览器的基础。Chromium项目的目标是提供一个稳定、快速、安全的浏览器引擎，供开发人员和其他浏览器厂商使用和修改。</li>
+<li>Chrome：Chrome是由Google基于Chromium项目构建的一个浏览器。它是基于Chromium引擎，并添加了一些Google专有的功能，如自动同步、Google账号集成、Google Now等。Chrome浏览器是一个流行的、功能丰富的浏览器，被广泛用于桌面和移动设备上。</li>
+<li>Blink：Blink是一个浏览器引擎，它是由Google基于Webkit引擎进行修改和优化而来。Blink引擎最初是作为Chromium项目的一部分开发的，后来被Google Chrome和其他浏览器采用。Blink引擎具有高性能、快速渲染和良好的兼容性，是目前许多主流浏览器的默认引擎。</li>
+</ol>
+<p><code>总结起来，Chromium是一个开源的浏览器项目，Chrome是基于Chromium项目构建的一个浏览器，而Blink是由Google开发的浏览器引擎，它是Chromium和Chrome的共同引擎。</code></p>
+<h2 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h2><h3 id="进程："><a href="#进程：" class="headerlink" title="进程："></a>进程：</h3><p>程序的一次执行，它占有一片独有的内存空间，是操作系统执行的基本单元。类似于工厂。</p>
+<ul>
+<li><p>一个进程中至少有一个运行的线程：主线程，进程启动后自动创建</p>
+</li>
+<li><p>一个进程中也可以同时运行多个线程，我们会说程序是多线程运行的</p>
+</li>
+<li><p>一个进程内的数据可以供其中多个线程直接共享，多个进程之间的数据是不能直接共享的</p>
+</li>
+</ul>
+<h3 id="线程："><a href="#线程：" class="headerlink" title="线程："></a>线程：</h3><ul>
+<li><p>是进程内的一个独立执行单元，是CPU调度的最小单元。程序运行的基本单元，类似于流水线。</p>
+</li>
+<li><p>线程池(thread poll): 保存多个线程对象的容器，实现线程对象的反复利用</p>
+</li>
+</ul>
+<p><code>JS引擎是单线程运行的！（回忆事件轮询机制）</code></p>
+<h3 id="现代浏览器：多进程、多线程模型"><a href="#现代浏览器：多进程、多线程模型" class="headerlink" title="现代浏览器：多进程、多线程模型"></a>现代浏览器：多进程、多线程模型</h3><ul>
+<li><p>不堪回首的过去：</p>
+<p>当你通过浏览器打开很多页面的时候,如果其中一个页面不响应了或者崩溃了,<br>那么随之而来的将会是更不幸的事情,你开打的所有页面都会得不到响应,<br>最让人不能忍受的是,其中的一些页面可能还包含了未保存或者未发送的信息</p>
+</li>
+<li><p>浏览器产商如何解决？</p>
+<ul>
+<li><p>采用多进程模型,该模型可以带来的好处</p>
+</li>
+<li><p>避免因单个页面的不响应或者崩溃影响整个浏览器的稳定性</p>
+</li>
+<li><p>当第三方插件崩溃时,也不会影响整个浏览器的稳定性</p>
+</li>
+<li><p>安全</p>
+</li>
+</ul>
+</li>
+<li><p>浏览器到底有些什么进程<code>（重要）</code></p>
+<ul>
+<li><p>Browser进程:</p>
+<ul>
+<li><p>浏览器的主进程,负责浏览器界面的显示,和各个页面的管理</p>
+</li>
+<li><p>浏览器中所有其他类型进程的祖先,负责其他进程的的创建和销毁</p>
+</li>
+<li><p><code>它有且只有一个</code></p>
+</li>
+</ul>
+</li>
+<li><p>Renderer进程:</p>
+<ul>
+<li><p>网页渲染进程,负责页面的渲染,</p>
+</li>
+<li><p>可以有多个当然渲染进程的数量不一定等于你开打网页的个数</p>
+</li>
+</ul>
+</li>
+<li><p>各种插件进程：</p>
+</li>
+<li><p>GPU进程:</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">移动设备的浏览器可能不太一样:</span><br><span class="line">	<span class="keyword">Android不支持插件,所以就没有插件进程</span></span><br><span class="line"><span class="keyword"></span>	GPU演化成了<span class="keyword">Browser进程的一个线程</span></span><br><span class="line"><span class="keyword"></span>	Renderer进程演化成了操作系统的一个服务进程,它仍然是独立的</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>每个进程内部又有很多线程</p>
+</li>
+</ul>
+<p>​            多线程的目的主要是保持用户界面的高度响应</p>
+<p>​            例如:为了不让Browser进程的UI线程被其他耗时的操作(大文件的加载,本地文件读写)所阻塞,那么我们就把这些操作放到分线程中去处理。在Renderer进程中,为了不让其他操作阻止渲染线程的高速执行,我们通常会将渲染过程【管线化】,利用计算机的多核优势,让渲染的不同阶段在不同的线程中执行。</p>
+<h1 id="浏览器渲染引擎与阻塞"><a href="#浏览器渲染引擎与阻塞" class="headerlink" title="浏览器渲染引擎与阻塞"></a>浏览器渲染引擎与阻塞</h1><h2 id="一、浏览器渲染引擎"><a href="#一、浏览器渲染引擎" class="headerlink" title="一、浏览器渲染引擎"></a>一、浏览器渲染引擎</h2><h3 id="主要模块"><a href="#主要模块" class="headerlink" title="主要模块"></a>主要模块</h3><ul>
+<li>一个渲染引擎主要包括：HTML解析器，css解析器，javascript引擎，布局layout模块，绘图模块<ul>
+<li>HTML解析器：解析HTML文档的解析器，主要作用是将HTML文本解析成DOM树。</li>
+<li>CSS解析器：它的作用是为DOM中的各个元素对象计算出样式信息，为布局模块提供基础设施</li>
+<li>Javascript引擎：使用Javascript代码可以修改网页的内容，也能修改css的信息，</li>
+<li>javascript引擎能够解析javascript代码，并通过DOM接口和CSS树接口来修改网页内容和样式信息，从而改变渲染的结果</li>
+<li>布局(layout)：在DOM创建之后，Webkit需要将其中的元素对象同样式结合器，计算它们的大小位置等布局信息，形成一个能表达这所有新信息的内部标识模型</li>
+<li>绘图模块(paint)：使用图像库将布局计算后的各个网页的节点绘制成图像结果</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>备注：文档对象模型（Document Object Model，简称DOM）</p>
+</blockquote>
+<h3 id="大致的渲染过程"><a href="#大致的渲染过程" class="headerlink" title="大致的渲染过程"></a>大致的渲染过程</h3><ul>
+<li><p>浏览器渲染页面的整个过程：浏览器会从上到下解析文档</p>
+<ol>
+<li>遇见HTML标记，调用HTML解析器解析为对应的token（一个token就是一个标签文本的序列化）并构建DOM树（就是一块内存，保存着tokens，建立他们之间的关系）</li>
+<li>遇见style/link标记调用响应解析器处理css标记，并构建出css样式树</li>
+<li>遇见script标记调用javascript引擎处理script标记、绑定事件、修改DOM树/css树等</li>
+<li>将DOM树与CSS树合并为一个渲染树</li>
+<li>根据渲染树来渲染，以计算每个节点的几何信息（这一过程需要依赖GPU）</li>
+<li>最终将各个节点绘制到屏幕上</li>
+</ol>
+<blockquote>
+<p>以上这些模块依赖很多其他的基础模块，包括要使用到网络 存储 2D/3D图像 音频视频解码器和图片解码器</p>
+<p>所以渲染引擎中还会包括如何使用这些依赖模块的部分</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="二、阻塞渲染"><a href="#二、阻塞渲染" class="headerlink" title="二、阻塞渲染"></a>二、阻塞渲染</h2><h3 id="关于CSS阻塞"><a href="#关于CSS阻塞" class="headerlink" title="关于CSS阻塞"></a>关于CSS阻塞</h3><blockquote>
+<p>声明：只有link引入的外部css才能够产生阻塞。</p>
+</blockquote>
+<ol>
+<li>style标签中的样式:<ol>
+<li>由html解析器进行解析，浏览器加载资源是异步的；</li>
+<li>不阻塞浏览器渲染（可能会产生“闪屏现象”）；</li>
+<li>不阻塞DOM解析；</li>
+</ol>
+</li>
+<li>link引入外部css样式（推荐使用的方式）<ol>
+<li>由css解析器进行解析，并且是同步解析的；</li>
+<li>阻塞浏览器渲染（可以利用这种阻塞避免“闪屏现象”）；</li>
+<li>阻塞其后面的js语句的执行；</li>
+<li>不阻塞DOM的解析（绝大多数浏览器的工作方式）</li>
+</ol>
+</li>
+<li>优化核心理念：尽可能快的提高外部css加载速度<ol>
+<li>使用CDN节点进行外部资源加速；</li>
+<li>对css进行压缩（利用打包工具）；</li>
+<li>减少http请求次数，将多个css文件合并</li>
+<li>优化样式表的代码</li>
+</ol>
+</li>
+</ol>
+<h3 id="关于JS阻塞"><a href="#关于JS阻塞" class="headerlink" title="关于JS阻塞"></a>关于JS阻塞</h3><ol>
+<li>阻塞后续DOM解析：<ol>
+<li>原因：浏览器不知道后续脚本的内容，如果先去解析了下面的DOM，而随后的js删除了后面所有的DOM，那么浏览器就做了无用功，浏览器无法预估脚本里面具体做了什么操作，例如<code>document.write</code>这种操作，索性全部停住，等脚本执行完了，浏览器再继续向下解析DOM。</li>
+</ol>
+</li>
+<li>阻塞页面渲染：<ol>
+<li>原因：js中也可以给DOM设置样式，浏览器等该脚本执行完毕，渲染出一个最终结果，避免做无用功。</li>
+</ol>
+</li>
+<li>阻塞后续js的执行：<ol>
+<li>原因：维护依赖关系，例如：必须引入jQuery在引入bootstrap</li>
+</ol>
+</li>
+</ol>
+<h2 id="三、备注"><a href="#三、备注" class="headerlink" title="三、备注"></a>三、备注</h2><p>​        【备注一】：css的解析和js的执行是互斥的（互相排斥），css解析的时候js停止执行，js执行的时候css停止解析。</p>
+<p>​        【备注二】：无论css阻塞，还是js阻塞，都不会阻塞浏览器加载外部资源（图片、视频、样式、脚本）。原因：浏览器始终处于一种：“先把请求发出去”的工作模式，只要是涉及到网络请求的内容，无论是：图片、样式、脚本，都会先发送请求去获取资源，至于资源到本地之后什么时候用，由浏览器自己协调。这种做法效率很高。</p>
+<p>​        【备注三】：webkit  和 Firefox 都进行了【预解析】这项优化。在执行js脚本时，浏览器的其他线程会预解析文档的其余部分，找出并加载需要通过网络加载的其他资源。通过这种方式，资源可以在提前加载，从而提高总体速度。预解析不会修改DOM树。</p>
+<blockquote>
+<p>在上述的过程中，网页在加载和渲染过程中会触发“DOMContentLoaded”和“onload”事件，分别是在DOM树构建（解析）完成之后，以及DOM树构建完并且网页所依赖的资源都加载完之后。</p>
+<p>script有一个defer属性，处于两者之间。</p>
+</blockquote>
+<h1 id="图层与重绘重排"><a href="#图层与重绘重排" class="headerlink" title="图层与重绘重排"></a>图层与重绘重排</h1><h2 id="CSS图层"><a href="#CSS图层" class="headerlink" title="CSS图层"></a>CSS图层</h2><p>​        浏览器在渲染一个页面时，会将页面分为很多个图层，图层有大有小，每个图层上有一个或多个节点。<code>不管有没有创建图层，浏览器都会开启一个document的图层</code></p>
+<p>​        在渲染DOM的时候，浏览器的实际工作是：</p>
+<ol>
+<li>获取DOM后分割为多个图层</li>
+<li>对每个图层的节点计算样式结果   （Recalculate style — 样式计算）</li>
+<li>为每个节点生成图形和位置           （Layout  – 布局，重排、回流）</li>
+<li>将每个节点绘制填充到图层中         （Paint – 重绘）</li>
+<li>图层作为纹理上传至GPU</li>
+<li>组合多个图层到页面上生成最终屏幕图像  （COmposite Layers – 图层重组）</li>
+</ol>
+<h2 id="图层的创建条件"><a href="#图层的创建条件" class="headerlink" title="图层的创建条件"></a>图层的创建条件</h2><p>CHrome浏览器满足以下任意情况就会创建图层：</p>
+<ul>
+<li>具有3D变换的CSS属性</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css"><span class="selector-id">#wrap</span>&#123;</span></span><br><span class="line"><span class="css">    <span class="attribute">width</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">height</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="css">    <span class="attribute">background</span>: pink;</span></span><br><span class="line"><span class="css">    <span class="attribute">transform</span>: <span class="built_in">translateZ</span>(<span class="number">0</span>); //<span class="number">3</span>D变换属性</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用加速视频解码的video节点</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">src</span>=<span class="string">&quot;./media/test.mp4&quot;</span> <span class="attr">width</span>=<span class="string">&quot;400&quot;</span> <span class="attr">height</span>=<span class="string">&quot;400&quot;</span> <span class="attr">controls</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>canvas节点</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">width</span>=<span class="string">&quot;400&quot;</span> <span class="attr">height</span>=<span class="string">&quot;400&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">	</span></span><br><span class="line"><span class="javascript">	<span class="built_in">window</span>.onload=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">		<span class="keyword">var</span> canvas = <span class="built_in">document</span>.querySelector(<span class="string">&quot;canvas&quot;</span>);</span></span><br><span class="line"><span class="javascript">		<span class="keyword">if</span>(canvas.getContext)&#123;</span></span><br><span class="line"><span class="javascript">			<span class="keyword">var</span> ctx = canvas.getContext(<span class="string">&quot;2d&quot;</span>);</span></span><br><span class="line"><span class="javascript">			ctx.fillRect(<span class="number">0</span>,<span class="number">0</span>,<span class="number">100</span>,<span class="number">100</span>);</span></span><br><span class="line"><span class="javascript">			ctx.strokeRect(<span class="number">100</span>,<span class="number">100</span>,<span class="number">100</span>,<span class="number">100</span>);</span></span><br><span class="line"><span class="javascript">		&#125;</span></span><br><span class="line"><span class="javascript">	&#125;</span></span><br><span class="line"><span class="javascript">	</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>CSS3动画的节点</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css">	*&#123;</span></span><br><span class="line"><span class="css">		<span class="attribute">margin</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="css">		<span class="attribute">padding</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="css">	&#125;</span></span><br><span class="line"><span class="css">	</span></span><br><span class="line"><span class="css">	<span class="keyword">@keyframes</span> move&#123;</span></span><br><span class="line"><span class="css">		<span class="selector-tag">from</span>&#123;</span></span><br><span class="line"><span class="css">			<span class="attribute">background-position</span>: <span class="number">0</span> <span class="number">0</span>;</span></span><br><span class="line"><span class="css">		&#125;</span></span><br><span class="line"><span class="css">		<span class="selector-tag">to</span>&#123;</span></span><br><span class="line"><span class="css">			<span class="attribute">background-position</span>: -<span class="number">576px</span> <span class="number">0</span>;</span></span><br><span class="line"><span class="css">		&#125;</span></span><br><span class="line"><span class="css">	&#125;</span></span><br><span class="line"><span class="css">	</span></span><br><span class="line"><span class="css">	<span class="selector-id">#wrap</span>&#123;</span></span><br><span class="line"><span class="css">		<span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="css">		<span class="attribute">left</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="css">		<span class="attribute">top</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="css">		<span class="attribute">transform</span>: <span class="built_in">translate3d</span>(-<span class="number">50%</span>,-<span class="number">50%</span>,<span class="number">0</span>);</span></span><br><span class="line"><span class="css">		<span class="attribute">width</span>: <span class="number">48px</span>;</span></span><br><span class="line"><span class="css">		<span class="attribute">height</span>: <span class="number">48px</span>;</span></span><br><span class="line"><span class="css">		<span class="attribute">background</span>: <span class="built_in">url</span>(<span class="string">./media/animation.png</span>);</span></span><br><span class="line"><span class="css">		<span class="attribute">animation</span>: move .<span class="number">5s</span> infinite  <span class="built_in">steps</span>(<span class="number">12</span>,start);</span></span><br><span class="line"><span class="css">	&#125;</span></span><br><span class="line"><span class="css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>具有CSS加速属性的元素(will-change)</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css">	<span class="selector-id">#wrap</span>&#123;</span></span><br><span class="line"><span class="css">		<span class="attribute">width</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="css">		<span class="attribute">height</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="css">		<span class="attribute">background</span>: pink;</span></span><br><span class="line"><span class="css">		will-change:transform</span></span><br><span class="line"><span class="css">	&#125;</span></span><br><span class="line"><span class="css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;wrap&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="重绘-Repaint"><a href="#重绘-Repaint" class="headerlink" title="重绘(Repaint)"></a>重绘(Repaint)</h2><p>重绘是一个元素外观的改变所触发的浏览器行为，例如改变outline、背景色等属性。浏览器会根据元素的新属性重新绘制，使元素呈现新的外观。重绘不会带来重新布局，所以并不一定伴随重排。</p>
+<blockquote>
+<p>注意：重绘是以图层为单位，如果图层中某个元素需要重绘，那么整个图层都需要重绘。所以为了提高性能，我们应该让这些“变化的东西”拥有自己的图层，不过绝大多数浏览器会为CSS3动画的节点自动创建图层。</p>
+</blockquote>
+<h2 id="重排-Reflow-又称：回流"><a href="#重排-Reflow-又称：回流" class="headerlink" title="重排(Reflow 又称：回流)"></a>重排(Reflow 又称：回流)</h2><p>渲染对象在创建完成后并添加到渲染树时，并不包含位置和大小信息。计算这些值的过程称为布局或重排</p>
+<blockquote>
+<p>“重绘”不一定需要重排，如改变某个网页元素的颜色，就只会触发“重绘”，不会触发“重排”，因为布局没有改变。</p>
+<p>“重排”大多数情况下会导致“重绘”，如改变一个网页元素的位置，就会同时触发“重排”和“重绘”，因为布局改变了。</p>
+</blockquote>
+<h3 id="触发重绘的属性"><a href="#触发重绘的属性" class="headerlink" title="触发重绘的属性"></a>触发重绘的属性</h3><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">* <span class="built_in">color</span>					* <span class="built_in">background</span>					* outline-<span class="built_in">color</span></span><br><span class="line">* <span class="built_in">border</span>-<span class="built_in">style</span>			* <span class="built_in">background</span>-<span class="built_in">image</span>				* outline</span><br><span class="line">* <span class="built_in">border</span>-<span class="built_in">radius</span>			* <span class="built_in">background</span>-<span class="built_in">position</span>			* outline-<span class="built_in">style</span></span><br><span class="line">* visibility				* <span class="built_in">background</span>-repeat				* outline-<span class="built_in">width</span></span><br><span class="line">* text-decoration			* <span class="built_in">background</span>-size				* <span class="built_in">box</span>-shadow</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="触发重排-回流-的属性"><a href="#触发重排-回流-的属性" class="headerlink" title="触发重排(回流)的属性"></a>触发重排(回流)的属性</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">* <span class="attribute">width</span>					  * <span class="attribute">top</span>							* <span class="attribute">text-align</span></span><br><span class="line">* <span class="attribute">height</span>					  * <span class="attribute">bottom</span>						* <span class="attribute">overflow-y</span></span><br><span class="line">* <span class="attribute">padding</span>					  * <span class="attribute">left</span>						* <span class="attribute">font-weight</span></span><br><span class="line">* <span class="attribute">margin</span>					  * <span class="attribute">right</span>						* <span class="attribute">overflow</span></span><br><span class="line">* <span class="attribute">display</span>					  * <span class="attribute">position</span>					* <span class="attribute">font-family</span></span><br><span class="line">* <span class="attribute">border-width</span>		  	  * <span class="attribute">float</span>						* <span class="attribute">line-height</span></span><br><span class="line">* <span class="attribute">border</span>					  * <span class="attribute">clear</span>						* vertival-align</span><br><span class="line">* <span class="attribute">min-height</span>				  * <span class="attribute">white-space</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="常见的触发重排的操作"><a href="#常见的触发重排的操作" class="headerlink" title="常见的触发重排的操作"></a>常见的触发重排的操作</h3><ol>
+<li>增加、删除、修改DOM节点时，会导致 Reflow， Repaint</li>
+<li>移动DOM的位置</li>
+<li>修改CSS样式</li>
+<li>Resize窗口（移动端没有这个问题，因为移动端的缩放没有影响布局视口）</li>
+<li>修改网页的默认字体</li>
+<li>获取某些属性时（width，height….）</li>
+</ol>
+<blockquote>
+<p>注：display: none 会触发reflow，而visibility: hidden 只会触发 repaint，因为没有发生位置变化。</p>
+<p>Reflow（重排）的成本比Repaint（重绘）的成本高很多很多。</p>
+<p>一个节点的Reflow很有可能导致子节点，甚至父节点以及同级节点的Reflow</p>
+</blockquote>
+<h2 id="优化重排重绘方案"><a href="#优化重排重绘方案" class="headerlink" title="优化重排重绘方案"></a>优化重排重绘方案</h2><p>浏览器渲染页面时经历了如下“细致”的环节：</p>
+<ol>
+<li>计算需要被加载到节点上的样式结果（Recalculate style–样式重计算）</li>
+<li>为每个节点生成图形和位置（Layout–重排或回流）</li>
+<li>将每个节点填充到图层中（Paint–重绘）</li>
+<li>组合图层到页面上（Composite Layers–图层重组）</li>
+</ol>
+<p>如果我们需要提升性能，需要做的就是减少浏览器在运行时所需要做的工作，即：尽量减少1234步。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">【具体优化方案如下】：</span><br><span class="line"><span class="number">1</span>.元素位置移动变换时尽量使用CSS3的<span class="attribute">transform</span>来代替对<span class="attribute">top</span> <span class="attribute">left</span>等的操作</span><br><span class="line">	变换（<span class="attribute">transform</span>）和透明度（<span class="attribute">opacity</span>）的改变仅仅影响图层的组合</span><br><span class="line"><span class="number">2</span>.【使用<span class="attribute">opacity</span>来代替<span class="attribute">visibility</span>】</span><br><span class="line">    (<span class="number">1</span>).使用<span class="attribute">visibility</span>不触发重排，但是依然重绘。</span><br><span class="line">    (<span class="number">2</span>).直接使用<span class="attribute">opacity</span>即触发重绘，又触发重排（GPU底层设计如此！）。</span><br><span class="line">    (<span class="number">3</span>)<span class="selector-class">.opacity</span>配合图层使用，即不触发重绘也不触发重排。</span><br><span class="line">        原因：</span><br><span class="line">		透明度的改变时，GPU在绘画时只是简单的降低之前已经画好的纹理的alpha值来达到效果，并不需要整体的重绘。</span><br><span class="line">		不过这个前提是这个被修改<span class="attribute">opacity</span>本身必须是一个图层。</span><br><span class="line"><span class="number">3</span>.【不要使用<span class="selector-tag">table</span>布局】</span><br><span class="line">	<span class="selector-tag">table</span>-cell</span><br><span class="line"><span class="number">4</span>.将【多次改变样式属性的操作合并成一次】操作</span><br><span class="line">	不要一条一条地修改DOM的样式，预先定义好class，然后修改DOM的className</span><br><span class="line"><span class="number">5</span>.【将DOM离线后再修改】</span><br><span class="line">	由于<span class="attribute">display</span>属性为<span class="attribute">none</span>的元素不在渲染树中，对隐藏的元素操作不会引发其他元素的重排。</span><br><span class="line">	如果要对一个元素进行复杂的操作时，可以先隐藏它，操作完成后再显示。这样只在隐藏和显示时触发<span class="number">2</span>次重排。</span><br><span class="line"><span class="number">6</span>.【利用文档碎片】(documentFragment)------vue使用了该种方式提升性能。</span><br><span class="line"><span class="number">7</span>.【不要把获取某些DOM节点的属性值放在一个循环里当成循环的变量】</span><br><span class="line">	当你请求向浏览器请求一些 style信息的时候，就会让浏览器flush队列，比如：</span><br><span class="line">		<span class="number">1</span>. offsetTop, offsetLeft, offsetWidth, offsetHeight</span><br><span class="line">		<span class="number">2</span>. scrollTop/<span class="attribute">Left</span>/<span class="attribute">Width</span>/<span class="attribute">Height</span></span><br><span class="line">		<span class="number">3</span>. clientTop/<span class="attribute">Left</span>/<span class="attribute">Width</span>/<span class="attribute">Height</span></span><br><span class="line">		<span class="number">4</span>. <span class="attribute">width</span>,<span class="attribute">height</span></span><br><span class="line">    当你请求上面的一些属性的时候，浏览器为了给你最精确的值，需要刷新内部队列，</span><br><span class="line">    因为队列中可能会有影响到这些值的操作。即使你获取元素的布局和样式信息跟最近发生或改变的布局信息无关，</span><br><span class="line">    浏览器都会强行刷新渲染队列。</span><br><span class="line"><span class="number">8</span>.动画实现过程中，启用GPU硬件加速:transform: <span class="built_in">tranlateZ</span>(<span class="number">0</span>)</span><br><span class="line"><span class="number">9</span>.为动画元素新建图层,提高动画元素的z-index</span><br><span class="line"><span class="number">10</span>.编写动画时，尽量使用如下的API</span><br></pre></td></tr></table></figure>
+
+<h3 id="requestAnimationFrame-—-请求动画帧"><a href="#requestAnimationFrame-—-请求动画帧" class="headerlink" title="requestAnimationFrame — 请求动画帧"></a>requestAnimationFrame — 请求动画帧</h3><ol>
+<li><p>window.requestAnimationFrame()</p>
+<p>说明：该方法会告诉浏览器在下一次重绘重排之前调用指定的函数</p>
+<p>参数：该方法使用一个回调函数作为参数，这个回调函数会在浏览器下一次重绘之前调用。回调函数会被自动传入一个参数，DOMHightResTimeStamp，标识requestAnimationFrame()开始触发回调函数的当前事件</p>
+<p>返回值：一个long整数，请求ID，是回调列表中唯一的标识。是个非零值，没别的意义。传给window.calcelAnimationFrame()以取消回调函数。</p>
+<blockquote>
+<p>备注：若你想在浏览器下次重绘之前继续更新下一帧动画，那么回调函数自身必须再次调用window.requestAnimationFrame()</p>
+</blockquote>
+</li>
+<li><p>window.cancelAnimationFrame(requestID)</p>
+<p>取消一个先前通过调用window.requestAnimationFrame()方法添加到计划中的动画帧请求。requestID是先前调用window.requestAnimationFrame()方法时返回的值，它是一个时间标识，用法与定时器的id类似。</p>
+</li>
+</ol>
+<h1 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h1><h2 id="什么是CND？工作原理是什么？"><a href="#什么是CND？工作原理是什么？" class="headerlink" title="什么是CND？工作原理是什么？"></a>什么是CND？工作原理是什么？</h2><p>网站通常将其所有的服务器都放在同一个地方，当用户群增加时，公司就必须在多个地理位置不同的服务器上部署内容，为了缩短http请求的时间，我们应该把大量的静态资源放置的离用户近一点。</p>
+<p>内容发布网络CDN(Content Delivery Networks)</p>
+<p>​    CDN是一组分布在多个不同地理位置的web服务器，用于更加有效的向用户发布内容</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">基本思路：</span><br><span class="line">    尽可能避开互联网上有可能影响数据传输速度和稳定性的瓶颈和环节，使内容传输的更快、更稳定。</span><br><span class="line">    通过在网络各处放置节点服务器所构成的在现有的互联网基础之上的一层智能虚拟网络，</span><br><span class="line">    CDN系统能够实时地根据网络流量和各节点的连接、负载状况以及到用户的距离和响应时间等综合信息</span><br><span class="line">    将用户的请求重新导向离用户最近的服务节点上。</span><br><span class="line">基础架构：最简单的CDN网络由一个DNS服务器和几台缓存服务器组成</span><br><span class="line">    <span class="number">1</span>.用户输入的url，会经过DNS解析“翻译”成对应的<span class="built_in">ip</span>地址，从而找到CDN专用的服务器。</span><br><span class="line">    <span class="number">2</span>.CDN“拿到”用户的<span class="built_in">IP</span>地址，随后和区域负载均衡设备配合，选择一台用户所属区域的区域负载均衡设备，告诉用户向这台设备发起请求。</span><br><span class="line">    <span class="number">3</span>.上述步骤中的“选择”依据</span><br><span class="line">            (<span class="number">1</span>).选择的依据包括：根据用户<span class="built_in">IP</span>地址，判断哪一台服务器距用户最近；</span><br><span class="line">            (<span class="number">2</span>).根据用户所请求的URL中携带的内容名称，判断哪一台服务器上有用户所需内容；</span><br><span class="line">            (<span class="number">3</span>).查询各个服务器当前的负载情况，判断哪一台服务器尚有服务能力。</span><br></pre></td></tr></table></figure>
+
+<h1 id="函数防抖和节流"><a href="#函数防抖和节流" class="headerlink" title="函数防抖和节流"></a>函数防抖和节流</h1><h2 id="防抖-debounce"><a href="#防抖-debounce" class="headerlink" title="防抖(debounce)"></a>防抖(debounce)</h2><ul>
+<li>概念： 延迟要执行的动作，若在延时的这段时间内，再次触发了，则取消之前开启的动作，重新计时。</li>
+<li>举例： 电脑无操作1分钟之内如果没有操作会进入休眠，当第40秒时鼠标被移动一下，重新计时1分钟。</li>
+<li>实现： 定时器。</li>
+<li>应用：搜索时等用户完整输入内容后再发送查询请求。</li>
+</ul>
+<h2 id="节流-throttle"><a href="#节流-throttle" class="headerlink" title="节流(throttle)"></a>节流(throttle)</h2><ul>
+<li>概念：设定一个特定的时间，让函数在特定的时间内只执行一次，不会频繁执行</li>
+<li>举例：fps游戏，鼠标按住不松手，子弹也不会连成一条线</li>
+<li>实现：定时器、标识</li>
+<li>需求：在鼠标滚轮滚动的时候，每隔2秒钟，打印一次</li>
+</ul>
+<h1 id="浏览器本地存储"><a href="#浏览器本地存储" class="headerlink" title="浏览器本地存储"></a>浏览器本地存储</h1><h2 id="浏览器存储"><a href="#浏览器存储" class="headerlink" title="浏览器存储"></a>浏览器存储</h2><pre><code>Cookie, SessionStorage, LocalStorage这三者都可以被用来在浏览器端存储数据，而且都是字符串类型的键值对！
+
+注意：session和SessionStorage不是一个概念！！！在服务端有一种存储方式叫做：session会话存储，常常被简称session
+</code></pre>
+<h2 id="Web-Storage"><a href="#Web-Storage" class="headerlink" title="Web Storage"></a>Web Storage</h2><pre><code>SessionStorage和LocalStorage都是浏览器本地存储，统称为Web Storage，存储内容大小一般支持5-10MB
+浏览器端通过 Window.sessionStorage 和 Window.localStorage 属性来实现本地存储机制。
+
+相关API：
+1. localStorage.setItem(&#39;key&#39;, &#39;value&#39;);
+        该方法接受一个键名和值作为参数，将会把键值对添加到存储中，如果键名存在，则更新其对应的值。
+        
+2. var data = xxxxxStorage.getItem(&#39;person&#39;);
+    该方法接受一个键名作为参数，返回键名对应的值。
+
+3. xxxxxStorage.removeItem(&#39;key&#39;);
+    该方法接受一个键名作为参数，并把该键名从存储中删除。
+    
+4. xxxxxStorage.clear()
+    调用该方法会清空存储中的所有键名
+
+备注：SessionStorage存储的内容会随着浏览器窗口关闭而消失。
+      LocalStorage存储的内容，需要手动清除才会消失。
+</code></pre>
+<blockquote>
+<p>storage事件：<br>    1. Storage对象发生变化时触发（即创建/更新/删除数据项时，Storage.clear() 只会触发一次）<br>    2. 在同一个页面内发生的改变不会起作用<br>    3. 在相同域名下的其他页面发生的改变才会起作用。(修改的页面不会触发事件，与它共享的页面会触发事件)<br>        key         :  修改或删除的key值，如果调用clear(),为null<br>        newValue    :  新设置的值，如果调用clear(),为null<br>        oldValue    :  调用改变前的value值,如果调用clear(),为null<br>        url         :  触发该脚本变化的文档的url<br>        storageArea :  当前的storage对象<br>        使用方法：<br>              window.addEventListener(‘storage’, function (event) {<br>                //此处写具体业务逻辑<br>              })</p>
+</blockquote>
+<h1 id="缓存机制"><a href="#缓存机制" class="headerlink" title="缓存机制"></a>缓存机制</h1><h2 id="1-缓存理解"><a href="#1-缓存理解" class="headerlink" title="1. 缓存理解"></a>1. 缓存理解</h2><pre><code>1. 缓存定义:
+       1. 浏览器在本地磁盘上将用户之前请求的数据存储起来，当访问者再次需要改数据的时候无需再次发送请求，直接从浏览器本地获取数据
+2. 缓存的好处:
+       1. 减少请求的个数
+       2. 节省带宽，避免浪费不必要的网络资源
+       3. 减轻服务器压力
+       4. 提高浏览器网页的加载速度，提高用户体验
+</code></pre>
+<h2 id="2-缓存分类"><a href="#2-缓存分类" class="headerlink" title="2. 缓存分类"></a>2. 缓存分类</h2><pre><code>1. 强缓存
+       1. 不会向服务器发送请求，直接从本地缓存中获取数据
+       2. 请求资源的的状态码为: 200 ok(from memory cache)
+2. 协商缓存
+       1. 向服务器发送请求，服务器会根据请求头的资源判断是否命中协商缓存
+       2. 如果命中，则返回304状态码通知浏览器从缓存中读取资源
+3. 强缓存 &amp; 协商缓存的共同点
+       1. 都是从浏览器端读取资源
+4. 强缓存 VS 协商缓存的不同点
+   1. 强缓存不发请求给服务器
+   2. 协商缓存发请求给服务器，根据服务器返回的信息决定是否使用缓存
+</code></pre>
+<h2 id="3-缓存使用示意图"><a href="#3-缓存使用示意图" class="headerlink" title="3. 缓存使用示意图"></a>3. 缓存使用示意图</h2><p><img src="https://raw.githubusercontent.com/ZenDevon/blog-img/main/V7f829.png"></p>
+<h2 id="4-缓存中的header参数"><a href="#4-缓存中的header参数" class="headerlink" title="4. 缓存中的header参数"></a>4. 缓存中的header参数</h2><h3 id="1、强缓存的header参数"><a href="#1、强缓存的header参数" class="headerlink" title="1、强缓存的header参数"></a>1、强缓存的header参数</h3><hr>
+<pre><code>1. expires：
+       1. 这是http1.0时的规范；它的值为一个绝对时间的GMT格式的时间字符串，如```Mon, 10 Jun 2015 21:31:12 GMT```，如果发送请求的时间在expires之前，那么本地缓存始终有效，否则就会发送请求到服务器来获取资源
+2. cache-control：max-age=number
+       1. 这是http1.1时出现的header信息，主要是利用该字段的max-age值来进行判断，它是一个相对值；资源第一次的请求时间和Cache-Control设定的有效期，计算出一个资源过期时间，再拿这个过期时间跟当前的请求时间比较，如果请求时间在过期时间之前，就能命中缓存，否则就不行；
+     2. cache-control常用的值（做一个简单了解即可）：
+     2. no-cache: 不使用本地缓存，需要使用协商缓存。先与服务器确认返回的响应是否被更改，如果之前的响应中存在Etag，那么请求的额时候会与服务器端进行验证，如果资源为被更改则使用缓存。
+     3. no-store: 直接禁止游览器缓存数据，每次用户请求该资源，都会向服务器发送一个请求，每次都会下载完整的资源。
+     4. public：可以被所有的用户缓存，包括终端用户和CDN等中间代理服务器。
+     5. private：只能被终端用户的浏览器缓存，不允许CDN等中继缓存服务器对其缓存。
+        2. &lt;font color=red&gt;注意：当cache-control与Expires共存的时候cache-control的优先级高&lt;/font&gt;
+</code></pre>
+<h3 id="2、协商缓存的header参数"><a href="#2、协商缓存的header参数" class="headerlink" title="2、协商缓存的header参数"></a>2、协商缓存的header参数</h3><hr>
+<p>  <font color=red> 重点：协商缓存都是由服务器来确定缓存资源是否可用的，所以客户端与服务器端要通过某种标识来进行通信，从而让服务器判断请求资源是否可以缓存访问</font></p>
+<ul>
+<li><p>Last-Modified/If-Modified-Since:二者的值都是GMT格式的时间字符串</p>
+<ol>
+<li> 浏览器第一次跟服务器请求一个资源，服务器在返回这个资源的同时，在respone的header加上Last-Modified的header，这个header表示这个资源在服务器上的最后修改时间</li>
+<li> 浏览器再次跟服务器请求这个资源时，在request的header上加上If-Modified-Since的header，这个header的值就是上一次请求时返回的Last-Modified的值</li>
+<li> 服务器再次收到资源请求时，根据浏览器传过来If-Modified-Since和资源在服务器上的最后修改时间判断资源是否有变化，如果没有变化则返回304 Not Modified，但是不会返回资源内容；如果有变化，就正常返回资源内容。当服务器返回304 Not Modified的响应时，response header中不会再添加Last-Modified的header，因为既然资源没有变化，那么Last-Modified也就不会改变，这是服务器返回304时的response header</li>
+<li> 浏览器收到304的响应后，就会从缓存中加载资源</li>
+<li> 如果协商缓存没有命中，浏览器直接从服务器加载资源时，Last-Modified的Header在重新加载的时候会被更新，下次请求时，If-Modified-Since会启用上次返回的Last-Modified值</li>
+<li> 图例：<img src="https://i.imgur.com/GZqqDbS.png"></li>
+</ol>
+</li>
+</ul>
+<hr>
+<ul>
+<li>Etag/If-None-Match<ol>
+<li>这两个值是由服务器生成的每个资源的唯一标识字符串，只要资源有变化就这个值就会改变</li>
+<li>其判断过程与Last-Modified/If-Modified-Since类似</li>
+</ol>
+</li>
+</ul>
+<hr>
+<ul>
+<li>既生Last-Modified何生Etag<ol>
+<li>HTTP1.1中Etag的出现主要是为了解决几个Last-Modified比较难解决的问题</li>
+<li>一些文件也许会周期性的更改，但是他的内容并不改变(仅仅改变的修改时间)，这个时候我们并不希望客户端认为这个文件被修改了，而重新GET</li>
+<li>某些文件修改非常频繁，比如在秒以下的时间内进行修改，(比方说1s内修改了N次)，If-Modified-Since能检查到的粒度是s级的，这种修改无法判断(或者说UNIX记录MTIME只能精确到秒)；</li>
+<li>某些服务器不能精确的得到文件的最后修改时间。</li>
+</ol>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>小结：</p>
+<ul>
+<li><p>利用Etag能够更加准确的控制缓存，因为Etag是服务器自动生成或者由开发者生成的对应资源在服务器端的唯一标识符。</p>
+</li>
+<li><p>Last-Modified与ETag是可以一起使用的，服务器会优先验证ETag，一致的情况下，才会继续比对Last-Modified，最后才决定是否返回304。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-强缓存如何重新加载新的资源"><a href="#5-强缓存如何重新加载新的资源" class="headerlink" title="5. 强缓存如何重新加载新的资源"></a>5. 强缓存如何重新加载新的资源</h2><ul>
+<li>通过更新页面中引用的资源路径，让浏览器主动放弃加载缓存去加载新的资源</li>
+<li>示例：<code>https://www.baidu.com/s?t=7aec0h3KB3Ba8lAbuyPg0AC0eDa59IvtDSmtMQBc6eW </code></li>
+<li>好处：<ul>
+<li>每次文件改变后query的值就会发生修改，当query值不同的时候也就是页面引用的资源路径不同。此时浏览器会主动加载新的资源。</li>
+</ul>
+</li>
+</ul>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/ZenDevon">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="#">It helps SEO</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://giscus.app/client.js"
+    data-repo="aircloud/hexo-aircloud-blog"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkxMjkwNDgyNjg="
+    data-category="Announcements"
+    data-category-id="DIC_kwDOB7EezM4COhKJ"
+    data-mapping="title"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light"
+    data-lang="zh-CN"
+    crossorigin="anonymous"
+    async>
+</script>
+
+
+
+
+</html>

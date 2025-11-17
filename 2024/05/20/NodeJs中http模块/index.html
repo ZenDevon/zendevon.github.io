@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="阿文的博客">
+    <meta property="og:type" content="website">
+    <meta name="description" content="阿文的博客">
+    <meta name="keyword"  content="hexo,阿文,阿文的博客,全栈开发">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        NodeJs中http模块 - ZenDevon 日常
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+
+    
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="ZenDevon 日常" type="application/atom+xml">
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> sometimes code, sometimes design </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar radius">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>ZenDevon</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>收藏</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-text">Web服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%88%9D%E4%BD%93%E9%AA%8C"><span class="toc-text">Web服务器初体验</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> sometimes code, sometimes design </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        NodeJs中http模块
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2024-05-20 20:48:25</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#前端" title="前端">前端</a>
+        <span>/</span>
+        
+        <a class="tag" href="/tags/#Node" title="Node">Node</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h2 id="Web服务器"><a href="#Web服务器" class="headerlink" title="Web服务器"></a>Web服务器</h2><ul>
+<li>什么是Web服务器？<ul>
+<li>当应用程序（客户端）需要某一个资源时，可以向一个台服务器，通过Http请求获取到这个资源；提供资源的这个服务器，就是一个Web服务器；<br><img src="https://raw.githubusercontent.com/ZenDevon/blog-img/main/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20240520211048.png" alt="img"></li>
+</ul>
+</li>
+<li> 目前有很多开源的Web服务器：Nginx、Apache（静态）、Apache Tomcat（静态、动态）、Node.js</li>
+</ul>
+<h2 id="Web服务器初体验"><a href="#Web服务器初体验" class="headerlink" title="Web服务器初体验"></a>Web服务器初体验</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">&quot;express&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> HTTP_PORT = <span class="number">8000</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> server = http.createServer(<span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    res.end(<span class="string">&quot;Hello World&quot;</span>);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">server.listen(HTTP_PORT, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`服务器在<span class="subst">$&#123;HTTP_PORT&#125;</span>启动成功~`</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建Server时会传入一个回调函数，这个回调函数在被调用时会传入两个参数：<ul>
+<li>req：request请求对象，包含请求相关的信息；</li>
+<li>res：response响应对象，包含我们要发送给客户端的信息</li>
+</ul>
+</li>
+</ul>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/ZenDevon">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="#">It helps SEO</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://giscus.app/client.js"
+    data-repo="aircloud/hexo-aircloud-blog"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkxMjkwNDgyNjg="
+    data-category="Announcements"
+    data-category-id="DIC_kwDOB7EezM4COhKJ"
+    data-mapping="title"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light"
+    data-lang="zh-CN"
+    crossorigin="anonymous"
+    async>
+</script>
+
+
+
+
+</html>

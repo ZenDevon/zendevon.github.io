@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:description" content="阿文的博客">
+    <meta property="og:type" content="website">
+    <meta name="description" content="阿文的博客">
+    <meta name="keyword"  content="hexo,阿文,阿文的博客,全栈开发">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        vue2配置Webpack@别名(路径配置) - ZenDevon 日常
+        
+    </title>
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/aircloud.css">
+
+    
+<link rel="stylesheet" href="/css/gitment.css">
+
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_28hi1hpxx24.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+
+    
+
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.2"><link rel="alternate" href="/atom.xml" title="ZenDevon 日常" type="application/atom+xml">
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> sometimes code, sometimes design </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar radius">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>ZenDevon</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/collect/">
+                    <i class="iconfont icon-shoucang1"></i>
+                    <span>收藏</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-text">项目目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%EF%BC%9Ajsconfig-json-%E9%85%8D%E7%BD%AE"><span class="toc-text">一：jsconfig.json 配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE"><span class="toc-text">基本配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E9%85%8D%E7%BD%AE"><span class="toc-text">复杂配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%EF%BC%9Avue-config-js-%E9%85%8D%E7%BD%AE"><span class="toc-text">二：vue.config.js 配置</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-bg" id="search-bg"></div>
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> sometimes code, sometimes design </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        vue2配置Webpack@别名(路径配置)
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2024-07-24 21:48:46</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Vue2" title="Vue2">Vue2</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content no-indent">
+        <h2 id="项目目录结构"><a href="#项目目录结构" class="headerlink" title="项目目录结构"></a>项目目录结构</h2><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">├── src</span><br><span class="line">│   ├── api</span><br><span class="line">│   ├── components</span><br><span class="line">│   │   └── HelloWorld.vue</span><br><span class="line">│   ├── assets</span><br><span class="line">│   ├── styles</span><br><span class="line">│   ├── utils</span><br><span class="line">│   └── views</span><br><span class="line">└── jsconfig.json</span><br></pre></td></tr></table></figure>
+
+<h2 id="一：jsconfig-json-配置"><a href="#一：jsconfig-json-配置" class="headerlink" title="一：jsconfig.json 配置"></a>一：jsconfig.json 配置</h2><p>在项目的根目录下创建 <code>jsconfig.json</code> 文件，可以让 IDE 识别项目的别名（如 <code>@</code>）。</p>
+<h3 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;compilerOptions&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;target&quot;</span>: <span class="string">&quot;es2017&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;baseUrl&quot;</span>: <span class="string">&quot;./&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;paths&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;@/*&quot;</span>: [<span class="string">&quot;src/*&quot;</span>]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">&quot;exclude&quot;</span>: [<span class="string">&quot;node_modules&quot;</span>, <span class="string">&quot;dist&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="复杂配置"><a href="#复杂配置" class="headerlink" title="复杂配置"></a>复杂配置</h3><p>你也可以在 <code>jsconfig.json</code> 中设置更复杂的别名，以便更好地组织你的项目结构。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;compilerOptions&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;baseUrl&quot;</span>: <span class="string">&quot;./&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;paths&quot;</span>: &#123;</span><br><span class="line">            <span class="attr">&quot;@/*&quot;</span>: [<span class="string">&quot;src/*&quot;</span>],</span><br><span class="line">            <span class="attr">&quot;@i/*&quot;</span>: [<span class="string">&quot;src/api/*&quot;</span>],</span><br><span class="line">            <span class="attr">&quot;@c/*&quot;</span>: [<span class="string">&quot;src/components/*&quot;</span>],</span><br><span class="line">            <span class="attr">&quot;@a/*&quot;</span>: [<span class="string">&quot;src/assets/*&quot;</span>],</span><br><span class="line">            <span class="attr">&quot;@s/*&quot;</span>: [<span class="string">&quot;src/styles/*&quot;</span>],</span><br><span class="line">            <span class="attr">&quot;@u/*&quot;</span>: [<span class="string">&quot;src/utils/*&quot;</span>],</span><br><span class="line">            <span class="attr">&quot;@v/*&quot;</span>: [<span class="string">&quot;src/views/*&quot;</span>]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">&quot;exclude&quot;</span>: [<span class="string">&quot;node_modules&quot;</span>, <span class="string">&quot;dist&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="二：vue-config-js-配置"><a href="#二：vue-config-js-配置" class="headerlink" title="二：vue.config.js 配置"></a>二：vue.config.js 配置</h2><p>在 Vue 项目中，你可以通过修改 <code>vue.config.js</code> 文件来设置 Webpack 的别名，以便更方便地引入文件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    <span class="attr">configureWebpack</span>: &#123;</span><br><span class="line">        <span class="attr">resolve</span>: &#123;</span><br><span class="line">            <span class="attr">alias</span>: &#123;</span><br><span class="line">                <span class="string">&quot;@&quot;</span>: path.resolve(__dirname, <span class="string">&quot;src&quot;</span>),</span><br><span class="line">                <span class="string">&quot;api&quot;</span>: path.resolve(__dirname, <span class="string">&quot;src/api&quot;</span>),</span><br><span class="line">                <span class="string">&quot;components&quot;</span>: path.resolve(__dirname, <span class="string">&quot;src/components&quot;</span>),</span><br><span class="line">                <span class="string">&quot;assets&quot;</span>: path.resolve(__dirname, <span class="string">&quot;src/assets&quot;</span>),</span><br><span class="line">                <span class="string">&quot;styles&quot;</span>: path.resolve(__dirname, <span class="string">&quot;src/styles&quot;</span>),</span><br><span class="line">                <span class="string">&quot;utils&quot;</span>: path.resolve(__dirname, <span class="string">&quot;src/utils&quot;</span>),</span><br><span class="line">                <span class="string">&quot;views&quot;</span>: path.resolve(__dirname, <span class="string">&quot;src/views&quot;</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：在使用 <code>path.resolve</code> 时，需要确保已经导入了 <code>path</code> 模块。</p>
+<p>通过以上配置，你可以在项目中更方便地使用别名来引入文件，提高开发效率。</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+        <div id="lv-container"></div>
+        <div class="giscus"></div>
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/ZenDevon">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="#">It helps SEO</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>  Theme <a target="_blank" rel="noopener" href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
+<script src="/js/index.js"></script>
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <script src="https://giscus.app/client.js"
+    data-repo="aircloud/hexo-aircloud-blog"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkxMjkwNDgyNjg="
+    data-category="Announcements"
+    data-category-id="DIC_kwDOB7EezM4COhKJ"
+    data-mapping="title"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light"
+    data-lang="zh-CN"
+    crossorigin="anonymous"
+    async>
+</script>
+
+
+
+
+</html>
